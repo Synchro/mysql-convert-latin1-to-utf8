@@ -28,14 +28,18 @@ $pretend = true;
 $processEnums = false;
 
 // TODO: The collation you want to convert the overall database to
-$defaultCollation = 'utf8_general_ci';
+// MySQL's UTF-8 charset isn't actually proper UTF-8, but a subset
+// See http://mathiasbynens.be/notes/mysql-utf8mb4
+// So this is using utf8mb4, which does support the full range of
+// UTF-8 characters
+$defaultCollation = 'utf8mb4_unicode_ci';
 
 // TODO Convert column collations and table defaults using this mapping
 // latin1_swedish_ci is included since that's the MySQL default
 $collationMap = array(
-    'latin1_bin'        => 'utf8_bin',
-    'latin1_general_ci' => 'utf8_general_ci',
-    'latin1_swedish_ci' => 'utf8_general_ci'
+    'latin1_bin'        => 'utf8mb4_bin',
+    'latin1_general_ci' => 'utf8mb4_unicode_ci',
+    'latin1_swedish_ci' => 'utf8mb4_unicode_ci'
 );
 
 $mapstring = '';
